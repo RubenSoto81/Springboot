@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head th:replace="base::head"></head>
+  <body>
+    <div th:replace="base::cabecera"></div>
+    <nav th:replace="base::barra"></nav>
+    <div class="container">
+
+
+      <div class="alert alert-success alert-dismissible" th:if="${subido}">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>¡Archivo subido!</strong> Se ha subido el archivo correctamente.
+      </div>
+
+      <div class="alert alert-danger alert-dismissible" th:if="${error}">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>¡Error!</strong> No se ha subido nada.
+      </div>
+      
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+
+      <form method="post" th:action="@{/admin/upload}" enctype="multipart/form-data" id="fileUploadForm" class="container">
+        <div class="row">
+          <div class="col-lg-5"> 
+            <div class="form-group">
+              <div class="btn btn-default carga-archivo-input"> 
+                <input type="file" name="file" aria-describedby="fileHelp"/>
+              </div>
+            </div> 
+          </div>       
+        </div> 
+
+        <div class="row">
+          <div class="col-lg-5"> 
+            <div style="text-align: right">
+              <button type="submit" class="btn btn-success">Enviar</button>
+            </div> 
+          </div>
+        </div> 
+      </form>
+
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>      
+      <div class="row">&zwj;</div>
+
+    </div>
+    <div th:replace="base::footer"></div>
+  </body>
+</html>

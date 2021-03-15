@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+  <head th:replace="base::head"><title>n</title></head>
+  <body>
+    <div th:replace="base::cabecera"></div>
+    <nav th:replace="base::barra"></nav>
+    <div class="container">
+
+      <table class="table table-hover table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Processed</th>
+            <th scope="col">Customer_id</th>
+            <th>&nbsp</th>
+          </tr>
+        </thead> 
+        <tbody> 
+          <tr>            
+            <td scope="row" th:text="${invoice.id}"></td>
+            <td th:text="${invoice.amount}"></td>
+            <td th:text="${invoice.processed}"></td>
+            <td th:text="${invoice.customer_id}"></td>
+            <td>&nbsp</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div style="text-align: right">
+        <a th:href="@{/invoice/update/{id}(id=${invoice.id})}"><button type="button" class="btn btn-danger">Modificar</button></a>
+        <a th:href="@{/invoice/listar}"><button type="button" class="btn btn-success">Listado</button></a>
+      </div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>      
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <br>
+    </div>
+    <div th:replace="base::footer"></div>
+  </body>
+</html>

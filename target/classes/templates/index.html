@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+  <head th:replace="base::head"><title>n</title></head>
+  <body>
+    <div th:replace="base::cabecera"></div>
+    <nav th:replace="base::barra"></nav>
+    <div class="container">
+
+      <div class="row">&zwj;</div>
+      <div sec:authorize="isAuthenticated()">
+        Hola <span sec:authentication="name"></span> tienes el rol de <span sec:authentication="principal.authorities"></span>
+        <div class="row">&zwj;</div>
+        <div th:replace="admin/index::servis"></div>
+      </div>
+
+      <div sec:authorize="!isAuthenticated()">
+        <h1>No has iniciado sesión</h1>
+
+        <div class="row">&zwj;</div>
+        <div class="row">&zwj;</div>
+        <h3><a th:href="@{/registeruser}">Cree un usuario</a> o <a th:href="@{/login}">inicie sesión</a></h3>
+        <div class="row">&zwj;</div>
+        <p>Pista (user): Puede ver pero no puede crear, enviar, subir archivo</p>
+        <p>desco</p>
+        <p>5678</p>
+        <div class="row">&zwj;</div>        
+        <p>Pista (admin):</p>
+        <p>administrador</p>
+        <p>administrador</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12" style="text-align: center">
+          <img src="/img/seguridad.png" class="rounded" alt="seguridad" width="70%"/>
+        </div>        
+      </div>
+
+
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+    </div>
+    <div th:replace="base::footer"></div>
+  </body>
+</html>

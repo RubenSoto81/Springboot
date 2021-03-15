@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+  <head th:replace="base::head"><title>a</title></head>
+  <body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v8ea8343deca3e735c5e491f22b0e2533427dcd1d0302777baea2667771626911/developers/css/app.css"/>
+
+    <script th:inline="javascript">
+      google.charts.load('current', {'packages': ['corechart', 'table', 'gauge', 'controls']});
+      google.charts.setOnLoadCallback(drawMainDashboard);
+
+      function drawMainDashboard() {
+        var dashboard = new google.visualization.Dashboard(
+                document.getElementById('dashboard_div'));
+        var slider = new google.visualization.ControlWrapper({
+          'controlType': 'NumberRangeFilter',
+          'containerId': 'slider_div',
+          'options': {
+            'filterColumnIndex': 2,
+            'ui': {
+              'labelStacking': 'vertical',
+              'label': /*[[${chartFiltroEdad}]]*/'noValue'
+            }
+          }
+        });
+        var categoryPicker = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'categoryPicker_div',
+          'options': {
+            'filterColumnIndex': 1,
+            'ui': {
+              'labelStacking': 'vertical',
+              'label': /*[[${chartFiltroGenero}]]*/'noValue',
+              'allowTyping': false,
+              'allowMultiple': false
+            }
+          }
+        });
+        var pie = new google.visualization.ChartWrapper({
+          'chartType': 'PieChart',
+          'containerId': 'chart_div',
+          'options': {
+            'width': 300,
+            'height': 300,
+            'legend': 'none',
+            'chartArea': {'left': 15, 'top': 15, 'right': 0, 'bottom': 0},
+            'pieSliceText': 'label'
+          },
+          'view': {'columns': [0, 3]}
+        });
+        var table = new google.visualization.ChartWrapper({
+          'chartType': 'Table',
+          'containerId': 'table_div',
+          'options': {
+          }
+        });
+
+        var data = google.visualization.arrayToDataTable(/*[[${donutsData}]]*/);
+
+
+        dashboard.bind([slider, categoryPicker], [pie, table]);
+        dashboard.draw(data);
+      }
+    </script>
+
+
+
+    <script th:inline="javascript">
+      var real_data = /*[[${chartData}]]*/'noValue';
+      $(document).ready(function () {
+        google.charts.load('current', {
+          packages: ['corechart', 'bar']
+        });
+        google.charts.setOnLoadCallback(drawColumnChart);
+        google.charts.setOnLoadCallback(drawPieChart);
+      });
+      function drawColumnChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn(/*[[${columna1tipo}]]*/'noValue', /*[[${columna1nombre}]]*/'noValue');
+        data.addColumn(/*[[${columna2tipo}]]*/'noValue', /*[[${columna2nombre}]]*/'noValue');
+        Object.keys(real_data).forEach(function (key) {
+          data.addRow([key, real_data[key]]);
+        });
+        var options = {
+          title: /*[[${chartTitulo}]]*/'noValue',
+          hAxis: {
+            title: /*[[${chartTituloH}]]*/'noValue'
+          },
+          vAxis: {
+            title: /*[[${chartTituloV}]]*/'noValue'
+          }
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+      }
+
+      function drawPieChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn(/*[[${columna1tipo}]]*/'noValue', /*[[${columna1nombre}]]*/'noValue');
+        data.addColumn(/*[[${columna2tipo}]]*/'noValue', /*[[${columna2nombre}]]*/'noValue');
+        Object.keys(real_data).forEach(function (key) {
+          data.addRow([key, real_data[key]]);
+        });
+        var options = {
+          title: /*[[${chartTitulo}]]*/'noValue'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <div th:replace="base::cabecera"></div>
+    <nav th:replace="base::barra"></nav>
+    <div class="container">
+
+
+
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div id="dashboard_div" style="border: 1px solid #ccc; margin-top: 1em">
+            <p style="padding-left: 1em"><strong>Donuts eaten per person</strong></p>
+            <table class="columns">
+              <tr>
+                <td>
+                  <div id="slider_div" style="padding-left: 15px"></div>
+                </td><td>
+                  <div id="categoryPicker_div"></div>
+                </td>
+              </tr><tr>
+                <td>
+                  <div id="chart_div" style="padding-top: 15px"></div>
+                </td><td>
+                  <div id="table_div" style="padding-top: 30px"></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Spring Boot Google Charts Example</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div id="chart_div2" style="width: 100%; height: 500px;"></div>
+          <div id="piechart" style="width: 100%; height: 500px;"></div>
+        </div>
+      </div>
+
+
+
+    </div>
+    <div th:replace="base::footer"></div>
+  </body>
+</html>

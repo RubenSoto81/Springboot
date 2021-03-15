@@ -1,0 +1,38 @@
+.container {
+  margin-top:30px
+}
+
+body {
+  margin: 0; 
+  background-image: url("../img/fondo.jpg");  
+  background-size: cover;
+  background-attachment: fixed
+
+}
+.jumbotron {
+  background-image: url("../img/jumbotron_bg.jpg");
+  background-size: cover;
+}
+
+.container { 
+  background-image: url("../img/paper.jpg");
+  background-color: white;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  padding: 15px;
+}
+
+table.table th:last-child {
+  width: 120px;
+}
+
+table.table td a {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 2.5px;
+  min-width: 15px;
+}
+
+.redondeado {
+  border-radius: 50px;
+}

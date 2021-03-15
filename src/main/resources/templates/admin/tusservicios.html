@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+  <head th:replace="base::head"><title>n</title></head>
+  <body>
+    <div th:replace="base::cabecera"></div>
+    <nav th:replace="base::barra"></nav>
+    <div class="container">
+
+      <div class="row" th:replace="admin/servicios::servicios">
+      </div>
+
+
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+    </div>
+    <div th:replace="base::footer"></div>
+  </body>
+</html>

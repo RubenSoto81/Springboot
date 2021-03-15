@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="es-ES">
+  <head th:replace="base::head"><title>a</title></head>
+  <body>
+    <div th:replace="base::cabecera"></div>
+    <nav th:replace="base::barra"></nav>
+    <div class="container">
+      <table class="table table-responsive table-responsive">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>DNI</th>
+            <th>Ciudad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nombre}"></td>
+            <td th:text="${cliente.apellido}"></td>
+            <td th:text="${cliente.dni}"></td>
+            <td th:text="${cliente.ciudad}"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="text-align: right">
+        <a th:href="@{/clientes/update/{id}(id=${cliente.id})}"><button type="button" class="btn btn-danger">Modificar</button></a>
+        <a th:href="@{/clientes/listar}"><button type="button" class="btn btn-success">Listado</button></a>
+      </div>
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>      
+      <div class="row">&zwj;</div>
+      <div class="row">&zwj;</div>
+      <br>
+    </div>
+    <div th:replace="base::footer"></div>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="es">  
+  <head th:replace="base::head"></head>
+  <head>      
+    <link rel="stylesheet" href="/css/logger.css">
+  </head>
+  <body>
+    <div th:replace="base::cabecera"></div>
+    <nav th:replace="base::barra"></nav>
+    <div class="container">
+      <br><br>
+      <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+          <div class="user_card">
+            <div class="d-flex justify-content-center">
+              <div class="brand_logo_container">
+                <img src="/img/login.jpg" class="brand_logo" alt="Logo">
+              </div>
+            </div>
+            <div class="d-flex justify-content-center form_container">
+              <form th:action="${postForm}" method="post">
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" name="email" class="form-control input_user" value="" placeholder="email">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" name="username" class="form-control input_user" value="" placeholder="username">
+                </div>
+
+                <div class="input-group mb-2">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password" name="password" class="form-control input_pass" value="" placeholder="password">
+                </div>
+
+                <div class="d-flex justify-content-center mt-3 login_container">
+                  <button type="submit" name="button" class="btn login_btn">Registrar</button>
+                </div>
+              </form>
+            </div>
+            <div class="mt-4">
+              <div class="d-flex justify-content-center links">
+                <p class="bg-info text-white" th:text="${message}"></p>
+              </div>
+              <div class="d-flex justify-content-center links">
+                <p class="bg-danger text-white" th:if="${param.error}">Datos incorrectos</p>
+              </div>
+              <div class="d-flex justify-content-center links">
+                <p class="bg-info text-white" th:if="${param.logout}">Has cerrado sesión</p>
+              </div>
+              <br>
+              <!--<div class="d-flex justify-content-center links">
+                ¿No tiene una cuenta? <a href="#" class="ml-2">Regístrese</a>
+              </div>
+              <div class="d-flex justify-content-center links">
+                <a href="#">¿Olvidó su contraseña?</a>
+              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br>
+    </div>
+    <div th:replace="base::footer"></div>
+  </body>
+</html>

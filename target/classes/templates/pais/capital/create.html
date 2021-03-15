@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+  <head th:replace="base::head"><title>n</title></head>
+  <body>
+    <div th:replace="base::cabecera"></div>
+    <nav th:replace="base::barra"></nav>
+    <div class="container">
+
+      <div class="alert alert-danger alert-dismissible" th:if="${error}">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>¡Error!</strong> No se ha ejecutado la tarea
+      </div>
+
+      <form th:action="${postForm}" th:object="${capital}" method="post" class="form-horizontal">   
+        <!-- Si está actualizando se usa para que conserve el mismo id -->
+        <input th:if="${actualizando}" type="hidden" th:field="*{id}" />
+
+
+        <div class="row">
+          <div class="col-lg-6" >
+            <label>Nombre</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Nombre de la capital" id="tema" th:field="*{nombre}">
+            </div>
+            <p class="text-danger" style="text-align: right" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error</p>
+          </div>
+          <div class="col-lg-4" >
+            <label>Habitantes</label>
+            <div class="input-group mb-4">
+              <input type="text" class="form-control" placeholder="Habitantes" id="fecha" th:field="*{habitantes}">
+            </div>
+            <p class="text-danger" style="text-align: right" th:if="${#fields.hasErrors('habitantes')}" th:errors="*{habitantes}">Error</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div style="text-align: right">
+              <button type="submit" value="Submit" class="btn btn-success">Enviar</button>
+            </div> 
+          </div>
+        </div>
+
+      </form>
+      <br>
+    </div>
+    <div th:replace="base::footer"></div>
+  </body>
+</html>

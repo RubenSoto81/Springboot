@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+  <head th:replace="base::head"><title>n</title></head>
+  <body>
+    <div th:replace="base::cabecera"></div>
+    <nav th:replace="base::barra"></nav>
+    <div class="container">      
+      <div class="row">
+        <div class="col">
+          <h5><p class="font-weight-bold">Características del motor</p></h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Identificación</dt>
+            <dd th:text="${motor.id}"></dd>
+          </dl>          
+        </div>
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Tipo de motor</dt>
+            <dd th:text="${motor.tipo}"></dd>
+          </dl>  
+        </div>
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Energía usada por el motor</dt>
+            <dd th:text="${motor.combustible}"></dd>
+          </dl>  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Potencia [CV]</dt>
+            <dd th:text="${motor.potencia}"></dd>
+          </dl>  
+        </div>
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Cilindrada [cc]</dt>
+            <dd th:text="${motor.cilindrada}"></dd>
+          </dl>  
+        </div>
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Cantidad cilindros</dt>
+            <dd th:text="${motor.cantidadcilindros}"></dd>
+          </dl>  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Tiene turbo</dt>
+            <dd th:text="${motor.turbo}"></dd>
+          </dl>  
+        </div>
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Tiene intercooler</dt>
+            <dd th:text="${motor.intercooler}"></dd>
+          </dl>  
+        </div>
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Tiene carburador</dt>
+            <dd th:text="${motor.carburador}"></dd>
+          </dl>  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Fecha de creación</dt>
+            <dd th:text="${motor.fechacreacion}"></dd>
+          </dl>  
+        </div>
+        <div class="col-lg-4" >
+        </div>
+        <div class="col-lg-4" >
+          <dl>
+            <dt>Puntuación</dt>
+            <dd th:text="${motor.valvulas}"></dd>
+          </dl>  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" >
+          <dl>
+            <dt>Descripción técnica</dt>
+            <dd th:text="${motor.descripcion}"></dd>
+          </dl>        
+        </div>
+      </div>
+      
+      <div sec:authorize="hasAnyAuthority('ADMIN')" style="text-align: right">
+        <a th:href="@{/motor/update/{id}(id=${motor.idnum})}"><button type="button" class="btn btn-danger">Modificar</button></a>
+        <a th:href="@{/motor/listar}"><button type="button" class="btn btn-success">Listado</button></a>
+      </div>
+      
+      <div sec:authorize="!hasAnyAuthority('ADMIN')" style="text-align: right">
+        <a th:href="@{/motor/listar}"><button type="button" class="btn btn-success">Listado</button></a>
+      </div>
+
+      <div class="row">&zwj;</div>
+    </div>
+    <div th:replace="base::footer"></div>
+  </body>
+</html>
